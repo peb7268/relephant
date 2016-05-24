@@ -9,14 +9,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var article_component_1 = require('./article.component');
 var AppComponent = (function () {
     function AppComponent() {
         this.name = 'Paul';
     }
+    AppComponent.prototype.addArticle = function (title, link) {
+        console.log("Adding article title: " + title.value + " and link: " + link.value);
+    };
     AppComponent = __decorate([
         core_1.Component({
-            selector: 'my-app',
-            template: '<h1>Hello {{name}}</h1>'
+            selector: 'App',
+            directives: [article_component_1.ArticleComponent],
+            template: "\n\t<form class = \"ui large form segment\">\n\t\t<h3 class=\"ui header\">Add a Link</h3>\n\t\t<div class = \"field\" >\n\t\t\t<label for= \"title\">Title : </label >\n\t\t\t<input name= \"title\" #newTitle>\n\t\t</div>\n\n\t\t<div class=\"field\">\n\t\t\t<label for=\"link\">Link :</label>\n\t\t\t<input name=\"link\" #newLink>\n\t\t</div>\n\n\t\t<button (click)=\"addArticle(newtitle, newlink)\" class=\"ui positive right floated button\">\n\t\t\tSubmit link\n\t\t</button>\n\t</form>\n\n\t<div class=\"ui grid posts\">\n\t\t<Article></Article>\n\t</div>\n"
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);
