@@ -11,27 +11,42 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var ArticleComponent = (function () {
     function ArticleComponent() {
-        this.title = 'Angular 2 testing';
-        this.link = 'http://angular.io';
-        this.votes = 10;
     }
     ArticleComponent.prototype.voteUp = function () {
-        this.votes += 1;
+        this.article.voteUp();
+        return false;
     };
     ArticleComponent.prototype.voteDown = function () {
-        this.votes -= 1;
+        this.article.voteDown();
+        return false;
     };
     ArticleComponent = __decorate([
         core_1.Component({
             selector: 'Article',
+            inputs: ['article'],
             host: {
                 class: 'row'
             },
-            template: "\n\t\t<div class=\"four wide column center aligned votes\">\n\t      <div class=\"ui statistic\">\n\t        <div class=\"value\">\n\t          {{ votes }}\n\t        </div>\n\t        <div class=\"label\">\n\t          Points\n\t        </div>\n\t      </div>\n\t    </div>\n\t    <div class=\"twelve wide column\">\n\t      <a class=\"ui large header\" href=\"{{ link }}\">\n\t        {{ title }}\n\t      </a>\n\t      <div class=\"meta\"></div>\n\t      <ul class=\"ui big horizontal list voters\">\n\t        <li class=\"item\">\n\t          <a href (click)=\"voteUp()\">\n\t            <i class=\"arrow up icon\"></i>\n\t              upvote\n\t            </a>\n\t        </li>\n\t        <li class=\"item\">\n\t          <a href (click)=\"voteDown()\">\n\t            <i class=\"arrow down icon\"></i>\n\t            downvote\n\t          </a>\n\t        </li>\n\t      </ul>\n\t    </div>\n\t"
+            template: "\n\t\t<div class=\"four wide column center aligned votes\">\n\t      <div class=\"ui statistic\">\n\t        <div class=\"value\">\n\t          {{ article.votes }}\n\t        </div>\n\t        <div class=\"label\">\n\t          Points\n\t        </div>\n\t      </div>\n\t    </div>\n\t    <div class=\"twelve wide column\">\n\t      <a class=\"ui large header\" href=\"{{ article.link }}\">\n\t        {{ article.title }}\n\t      </a>\n\t      <div class=\"meta\"></div>\n\t      <ul class=\"ui big horizontal list voters\">\n\t        <li class=\"item\">\n\t          <a href (click)=\"voteUp()\">\n\t            <i class=\"arrow up icon\"></i>\n\t              upvote\n\t            </a>\n\t        </li>\n\t        <li class=\"item\">\n\t          <a href (click)=\"voteDown()\">\n\t            <i class=\"arrow down icon\"></i>\n\t            downvote\n\t          </a>\n\t        </li>\n\t      </ul>\n\t    </div>\n\t"
         }), 
         __metadata('design:paramtypes', [])
     ], ArticleComponent);
     return ArticleComponent;
 }());
 exports.ArticleComponent = ArticleComponent;
+var Article = (function () {
+    function Article(title, link, votes) {
+        this.title = title;
+        this.link = link;
+        this.votes = votes || 0;
+    }
+    Article.prototype.voteUp = function () {
+        this.votes += 1;
+    };
+    Article.prototype.voteDown = function () {
+        this.votes -= 1;
+    };
+    return Article;
+}());
+exports.Article = Article;
 //# sourceMappingURL=article.component.js.map
